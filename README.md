@@ -1,0 +1,1 @@
+This is a scraper for ruby to automatically download the videos in a search on baseball savant. As of right now, users still need to manually download the webpage into the working folder, but functionality for automatically downloading that may happen in the future.
