@@ -10,7 +10,6 @@ end
 # Use youtube-dl to download a given url to a given filename in the vids subfolder
 def download_video(url, name)
   command = "youtube-dl #{url[0]} -o vids/#{name}.mp4"
-  puts command
   result = `#{command}`
 end
 
@@ -24,6 +23,7 @@ end
 def download_all_matches(matches)
   i = 1
   matches.each do |match|
+    puts "Downloading video #{i} of #{matches.length}"
     download_video(match, i)
     i += 1
   end
