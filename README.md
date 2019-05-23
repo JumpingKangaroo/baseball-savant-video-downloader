@@ -4,8 +4,8 @@ This is a scraper for ruby to automatically download the videos in a search on b
 This requires ruby and youtube-dl to be installed. As of now, it requires linux because the downloader uses a bash script. 
 
 To run, do:
-  $ ruby fetch.rb <startDate> <endDate> <playerID>
+    $ ruby fetch.rb <startDate> <endDate> <playerID>
 where startDate and endDate is the range of videos you are looking for in the format YEAR-MONTH-DAY (2019-05-11)
 Player ID is the 6-digit identifier for a player. It can be found in the csv on [this](http://crunchtimebaseball.com/baseball_map.html) website. 
 An example command to find the at bats of Mike Trout between 5/5 and 5/11:
-  $ ruby fetch.rb 2019-05-05 2019-05-11 545361
+    $ ruby fetch.rb 2019-05-05 2019-05-11 545361`
