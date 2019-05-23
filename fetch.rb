@@ -24,9 +24,9 @@ def download_all_matches(matches)
   end
 end
 
-# Expects date in the format 2019-05-11
-def get_search_results(startDate, endDate)
-  results = `bash get.sh #{startDate} #{endDate}`
+# Expects dates in the format 2019-05-11 and a playerID
+def get_search_results(startDate, endDate, playerID)
+  results = `bash get.sh #{startDate} #{endDate} #{playerID}`
   File.open("output") do |f|
     return f.read
   end
@@ -39,16 +39,21 @@ def cleanup_leftover_files()
   File.delete('output') if File.exist?('output')
 end
 
-startDate = "2019-05-05"
-endDate = "2019-05-11"
+# Expects date arguments in the format 2019-05-11
+startDate = ARGV[0]
+endDate = ARGV[1]
+
+# Third argument of playerID
+playerID = ARGV[2]
 
 # Get the search results for the given dates
-webpage = get_search_results(startDate, endDate)
+webpage = get_search_results(startDate, endDate, playerID)
 
 # Find matches and download them
 matches = find_video_links(webpage)
 if matches.length <= 1
   puts "ERROR, 0 matches found in request"
+  exit
 end
 download_all_matches(matches)
 
