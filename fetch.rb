@@ -1,5 +1,6 @@
 require 'net/http'
 require 'io/console'
+require 'fileutils'
 
 # Parse the given html to find the video links
 def find_video_links(webpageHTML)
@@ -26,11 +27,23 @@ end
 # Expects date in the format 2019-05-11
 def get_search_results(startDate, endDate)
   results = `bash get.sh #{startDate} #{endDate}`
-  File.open("output").read
+  File.open("output") do |f|
+    return f.read
+  end
 end
 
+# Cleans up vids/ output and files.txt files after operations are complete
+def cleanup_leftover_files()
+  FileUtils.rm_rf('vids/')
+  File.delete('files.txt') if File.exist?('files.txt')
+  File.delete('output') if File.exist?('output')
+end
+
+startDate = "2019-05-05"
+endDate = "2019-05-11"
+
 # Get the search results for the given dates
-webpage = get_search_results("2019-05-05", "2019-05-11")
+webpage = get_search_results(startDate, endDate)
 
 # Find matches and download them
 matches = find_video_links(webpage)
@@ -48,3 +61,6 @@ ffmpegFile = File.open('files.txt', 'w') { |f| f.write(text) }
 
 # Concatate with ffmpeg
 result = `ffmpeg -f concat -i files.txt -c copy out.mp4`
+
+# Clean up files
+cleanup_leftover_files()
