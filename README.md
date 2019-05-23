@@ -1,6 +1,6 @@
 ### Baseball Savant Video Downloader
 
-This is a scraper for ruby to automatically download the videos in a search on baseball savant. It gets the last pitch of every at bat for a given player in the given date range. 
+This is a scraper for ruby to automatically download the videos in a search on baseball savant. It gets the last pitch of every at bat for a given player in the given date range. The videos will get concatenated into one "out.mp4".
 This requires ruby and youtube-dl to be installed. As of now, it requires linux because the downloader uses a bash script. 
 
 To run, do:
