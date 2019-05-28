@@ -13,5 +13,5 @@ where startDate and endDate is the range of videos you are looking for in the fo
 Player ID is the 6-digit identifier for a player. It can be found in the csv on [this](http://crunchtimebaseball.com/baseball_map.html) website. 
 An example command to find the at bats of Mike Trout between 5/5 and 5/11:
 ```
-  $ ruby fetch.rb 2019-05-05 2019-05-11 545361`
+  $ ruby fetch.rb 2019-05-05 2019-05-11 545361
 ```
