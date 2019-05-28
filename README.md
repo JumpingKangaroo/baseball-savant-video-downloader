@@ -7,10 +7,10 @@ This requires ruby and youtube-dl to be installed. As of now, it requires linux 
 ### How To Use
 To run, do:
 ```
-  $ ruby fetch.rb <startDate> <endDate> <playerID>
+  $ ruby fetch.rb <startDate> <endDate> <playerID> <justLastPitch?>
 ```
 where startDate and endDate is the range of videos you are looking for in the format YEAR-MONTH-DAY (2019-05-11)
-Player ID is the 6-digit identifier for a player. It can be found in the csv on [this](http://crunchtimebaseball.com/baseball_map.html) website. 
+Player ID is the 6-digit identifier for a player. It can be found in the csv on [this](http://crunchtimebaseball.com/baseball_map.html) website. justLastPitch is an optional (defaults to true) parameter that can be used to fetch all the pitches in every at bat if false
 An example command to find the at bats of Mike Trout between 5/5 and 5/11:
 ```
   $ ruby fetch.rb 2019-05-05 2019-05-11 545361
