@@ -25,8 +25,9 @@ def download_all_matches(matches)
 end
 
 # Expects dates in the format 2019-05-11 and a playerID
-def get_search_results(startDate, endDate, playerID)
-  results = `bash get.sh #{startDate} #{endDate} #{playerID}`
+def get_search_results(startDate, endDate, playerID, isLastPitch)
+  flag = isLastPitch ? "is\\.\\.last\\.\\.pitch|" : ""
+  results = `bash get.sh #{startDate} #{endDate} #{playerID} #{flag}`
   File.open("output") do |f|
     return f.read
   end
@@ -46,13 +47,17 @@ endDate = ARGV[1]
 # Third argument of playerID
 playerID = ARGV[2]
 
+isLastPitch = ARGV[3].downcase == "true" ? ARGV[3] : false
+
+
 # Get the search results for the given dates
-webpage = get_search_results(startDate, endDate, playerID)
+webpage = get_search_results(startDate, endDate, playerID, isLastPitch)
 
 # Find matches and download them
 matches = find_video_links(webpage)
 if matches.length <= 1
   puts "ERROR, 0 matches found in request"
+  cleanup_leftover_files()
   exit
 end
 download_all_matches(matches)
