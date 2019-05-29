@@ -27,7 +27,7 @@ end
 # Expects dates in the format 2019-05-11 and a playerID
 def get_search_results(startDate, endDate, playerID, isLastPitch)
   flag = isLastPitch ? "is\\.\\.last\\.\\.pitch|" : ""
-  results = `bash get.sh #{startDate} #{endDate} #{playerID} #{flag}`
+  results = `bash get.sh #{startDate} #{endDate} #{playerID} "#{flag}"`
   File.open("output") do |f|
     vals = f.read
     f.close
