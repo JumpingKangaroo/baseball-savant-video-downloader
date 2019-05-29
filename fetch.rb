@@ -29,7 +29,9 @@ def get_search_results(startDate, endDate, playerID, isLastPitch)
   flag = isLastPitch ? "is\\.\\.last\\.\\.pitch|" : ""
   results = `bash get.sh #{startDate} #{endDate} #{playerID} #{flag}`
   File.open("output") do |f|
-    return f.read
+    vals = f.read
+    f.close
+    return vals
   end
 end
 
@@ -68,6 +70,7 @@ text = ""
   text += "file 'vids/#{x}.mp4'\n"
 end
 ffmpegFile = File.open('files.txt', 'w') { |f| f.write(text) }
+ffmpegFile.close
 
 # Concatate with ffmpeg
 result = `ffmpeg -f concat -i files.txt -c copy out.mp4`
