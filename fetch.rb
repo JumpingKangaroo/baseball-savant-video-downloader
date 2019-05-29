@@ -70,7 +70,6 @@ text = ""
   text += "file 'vids/#{x}.mp4'\n"
 end
 ffmpegFile = File.open('files.txt', 'w') { |f| f.write(text) }
-ffmpegFile.close
 
 # Concatate with ffmpeg
 result = `ffmpeg -f concat -i files.txt -c copy out.mp4`
